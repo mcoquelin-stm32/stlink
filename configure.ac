@@ -30,7 +30,9 @@ PKG_CHECK_MODULES(USB, libusb-1.0 >= 1.0.0,,
                  AC_MSG_ERROR([*** Required libusb-1.0 >= 1.0.0 not installed ***]))
 AC_CHECK_LIB([usbpath],[usb_path2devnum],,,-lusb)
 
-LIBS="$LIBS $USB_LIBS"
+AC_SEARCH_LIBS([bfd_openr], [bfd])
+
+LIBS="$LIBS $USB_LIBS $BFD_LIBS"
 CFLAGS="$CFLAGS $USB_CFLAGS"
 
 case "${host}" in

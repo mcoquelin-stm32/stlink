@@ -7,7 +7,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 if MINGW
 bin_PROGRAMS = st-flash st-util st-info
 else
-bin_PROGRAMS = st-flash st-util st-term st-info
+bin_PROGRAMS = st-flash st-util st-term st-info st-extflash
 endif
 
 noinst_LIBRARIES      = libstlink.a
@@ -16,6 +16,7 @@ st_flash_SOURCES = flash/main.c
 st_term_SOURCES = src/st-term.c
 st_info_SOURCES = src/st-info.c
 st_util_SOURCES = gdbserver/gdb-remote.c gdbserver/gdb-remote.h gdbserver/gdb-server.c mingw/mingw.c mingw/mingw.h
+st_extflash_SOURCES = extloader/main.c
 
 CFILES = \
 	src/stlink-common.c \
@@ -52,6 +53,8 @@ st_term_CPPFLAGS        = -std=gnu99 -Wall -Wextra -O2 -I$(top_srcdir)/src -I$(t
 st_info_LDADD   =       libstlink.a
 st_info_CPPFLAGS        = -std=gnu99 -Wall -Wextra -O2 -I$(top_srcdir)/src -I$(top_srcdir)/mingw
 
+st_extflash_LDADD   =       libstlink.a
+st_extflash_CPPFLAGS        = -std=gnu99 -Wall -Wextra -O2 -I$(top_srcdir)/src -I$(top_srcdir)/mingw
 
 EXTRA_DIST = autogen.sh
 
