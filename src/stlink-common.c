@@ -872,14 +872,7 @@ void stlink_print_data(stlink_t * sl) {
 
 /* memory mapped file */
 
-typedef struct mapped_file {
-    uint8_t* base;
-    size_t len;
-} mapped_file_t;
-
-#define MAPPED_FILE_INITIALIZER { NULL, 0 }
-
-static int map_file(mapped_file_t* mf, const char* path) {
+int map_file(mapped_file_t* mf, const char* path) {
     int error = -1;
     struct stat st;
 
@@ -911,7 +904,7 @@ on_error:
     return error;
 }
 
-static void unmap_file(mapped_file_t * mf) {
+void unmap_file(mapped_file_t * mf) {
     munmap((void*) mf->base, mf->len);
     mf->base = (unsigned char*) MAP_FAILED;
     mf->len = 0;

@@ -683,6 +683,18 @@ extern "C" {
     int stlink_load_device_params(stlink_t *sl);
 
 
+	// memory mapped file
+	typedef struct mapped_file {
+		uint8_t* base;
+	    size_t len;
+	} mapped_file_t;
+
+#define MAPPED_FILE_INITIALIZER { NULL, 0 }
+
+	int map_file(mapped_file_t* mf, const char* path);
+	void unmap_file(mapped_file_t * mf);
+
+
 
 #include "stlink-sg.h"
 #include "stlink-usb.h"
