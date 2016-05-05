@@ -1525,7 +1525,8 @@ int write_loader_to_sram(stlink_t *sl, stm32_addr_t* addr, size_t* size) {
 
         0x00, 0x2a,
         0xf8, 0xd3,
-        0x00, 0xbe
+        0x00, 0xbe,
+        0x00, 0x00, // Add padding to align on 32 bits
     };
 
     static const uint8_t loader_code_stm32l0[] = {
@@ -1547,7 +1548,8 @@ int write_loader_to_sram(stlink_t *sl, stm32_addr_t* addr, size_t* size) {
 
         0x00, 0x2a,
         0xf8, 0xd3,
-        0x00, 0xbe
+        0x00, 0xbe,
+        0x00, 0x00, // Add padding to align on 32 bits
     };
 
     static const uint8_t loader_code_stm32f4[] = {
